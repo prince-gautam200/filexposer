@@ -1,7 +1,7 @@
 # FILEXPOSER (FXR)
 
 A tool to serve/exposer your files over internet
-![](images/fxr.png)
+![](images/fxre.png)
 
 ## Features
 
