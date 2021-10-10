@@ -1,0 +1,6 @@
+#!/bin/bash
+#WRITTEN BY PRINCE
+pkill ngrok
+pkill python3
+cd /
+echo "Server Stopped...!!!"
