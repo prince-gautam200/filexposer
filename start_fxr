@@ -1,4 +1,5 @@
 #!/bin/bash
+#WRITTEN BY PRINCE
 dist=$(cat /usr/local/bin/creds | cut -d ":" -f 8)
 
 if [ $dist == "1" ]
