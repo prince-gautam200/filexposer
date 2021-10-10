@@ -4,6 +4,7 @@
 
 #Installing Ngrok
 #Taking Credentials--------------
+chmod +x *
 apt-get install figlet -y >> server/agif.txt 
 figlet FILEXPOSER
 echo "---->>>"
