@@ -1,0 +1,81 @@
+#!/bin/bash
+dist=$(cat /usr/local/bin/creds | cut -d ":" -f 8)
+
+if [ $dist == "1" ]
+then
+cd /
+cd filexposer/
+usrme=$(cat creds | cut -d ":" -f 2)
+passwd=$(cat creds | cut -d ":" -f 4)
+regn=$(cat creds | cut -d ":" -f 6)
+fi
+
+if [ $dist == "2" ]
+then
+cd /
+cd filexposer
+usrme=$(cat creds | cut -d ":" -f 2)
+passwd=$(cat creds | cut -d ":" -f 4)
+regn=$(cat creds | cut -d ":" -f 6)
+fi
+
+if [ $dist == "3" ]
+then
+cd /data/data/com.termux/files/usr/
+cd filexposer
+usrme=$(cat creds | cut -d ":" -f 2)
+passwd=$(cat creds | cut -d ":" -f 4)
+regn=$(cat creds | cut -d ":" -f 6)
+fi
+
+if  [ $dist == "4" ]
+then
+cd filexposer
+usrme=$(cat creds | cut -d ":" -f 2)
+passwd=$(cat creds | cut -d ":" -f 4)
+regn=$(cat creds | cut -d ":" -f 6)
+fi
+
+response=$(curl http://ip-api.com/json/$1 -s)
+status=$(echo $response | jq '.status' -r)
+
+if [ $status == "success" ]
+then
+query=$(echo $response |jq '.query' -r)
+fi
+
+cd /
+cd internet_shared/
+
+python3 -m http.server 27450 >> ../filexposer/pylog.txt  &
+ngrok http 27450 -auth $usrme:$passwd -region=$regn --log=stdout > ../filexposer/svrmain.log &
+
+cd /
+cd filexposer/
+figlet FILEXPOSER
+echo "----------------------------------------------------------------------->>>"
+echo "Wait Starting Services...."
+sleep 10s
+cat svrmain.log | cut -d "=" -f 4
+echo "_______________________________________________________________<<"
+
+echo "---------------------------------------------"
+echo "|Your info--                                 |"
+echo "|Username       :$usrme                      |"
+echo "|Server Region  :$regn                          |"
+echo "|Port           :27450                       |"
+echo "|Shared Path    :/internet_shared/           |"
+echo "|Your Ip_addr   :$query               |"
+echo "---------------------------------------------"
+echo "---------------------------------------------------->>>"
+echo "Your fxr url --"
+echo "Use 'https' protocol for secured connection"
+       cat svrmain.log | grep "url" | cut -d "=" -f 8
+echo "---------------------------------------------------->>>"
+echo "_______________________________________________________________<<"
+echo "To inspect request of your server, type 'http:127.0.0.1:4040'"
+echo "on your browser to access server admin panel"
+
+echo "----------------------------------------------------------------------->>>"
+cd /
+
