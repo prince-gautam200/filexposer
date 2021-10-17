@@ -38,6 +38,8 @@ A tool to serve/exposer your files over internet
 
 ```
 
+## Notice 
+- This is under development may be it would not work with all distribution. we are working to make this tool work more efficiently as soon as possible.
   
 ## Authors
 
