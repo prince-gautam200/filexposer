@@ -44,7 +44,7 @@ A tool to serve/exposer your files over internet
 ## Authors
 
 - [@prince-gautam200](https://www.github.com/prince-gautam200)
-- Written by Prince
+- Written by Prince Gautam ;)
 
   
 ## License
